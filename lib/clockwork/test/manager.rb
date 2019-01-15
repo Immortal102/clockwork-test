@@ -18,6 +18,7 @@ module Clockwork
         if start_time
           @time_altered = true
           Timecop.travel(start_time)
+          @events.each(&:reinit_last_ran)
         end
 
         yield if block_given?
@@ -70,7 +71,6 @@ module Clockwork
 
           tick
           increase_time
-
           @total_ticks += 1
           break if ticks_exceeded? || time_exceeded?
         end
