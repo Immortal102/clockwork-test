@@ -3,6 +3,10 @@ module Clockwork
     class Event < Clockwork::Event
       attr_reader :block
 
+      def reset
+        @last = nil
+      end
+
       private
 
       def execute

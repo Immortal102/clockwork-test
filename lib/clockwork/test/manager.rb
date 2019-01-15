@@ -27,6 +27,14 @@ module Clockwork
         Timecop.return if @time_altered
       end
 
+      def clear!
+        @total_ticks = 0
+        @time_altered = false
+        @max_ticks, @start_time, @end_time, @tick_speed = nil
+        @events.each(&:reset)
+        @history = JobHistory.new
+      end
+
       def ran_job?(job)
         history.ran_job?(job)
       end

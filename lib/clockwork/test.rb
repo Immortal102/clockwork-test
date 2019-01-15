@@ -59,7 +59,7 @@ module Clockwork
       end
 
       def clear!
-        Clockwork::Test.manager = Clockwork::Test::Manager.new
+        Clockwork::Test.manager.clear!
       end
 
       def ran_job?(job)
