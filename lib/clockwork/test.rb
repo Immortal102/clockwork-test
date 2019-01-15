@@ -51,10 +51,10 @@ module Clockwork
         }
 
         manager.run(run_opts) do
-          # TODO parse file rather than loading it
-          # and overloading Clockwork::Methods::every
-          # and Clockwork::Methods::configure
-          load file
+          unless @loaded
+            load(file)
+            @loaded = true
+          end
         end
       end
 
