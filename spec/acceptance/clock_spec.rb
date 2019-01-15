@@ -38,7 +38,10 @@ describe "Clockwork" do
     end
 
     context "running multiple times" do
-      before { Clockwork::Test.run(file: clock_file, max_ticks: 2, tick_speed: 1.minute) }
+      before do
+        Clockwork::Test.clear!
+        Clockwork::Test.run(file: clock_file, max_ticks: 2, tick_speed: 2.minute)
+      end
 
       it { should have_run(test_job_name).exactly(2).times }
       it { should have_run(test_job_name) }
